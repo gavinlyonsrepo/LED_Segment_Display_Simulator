@@ -1,0 +1,14 @@
+Commands to convert font file to list of numbers
+
+1. cut everything after /
+ 	cut -d "/" -f1 testfile >> testfile1
+
+2. strip out line feeds from file
+	sed ':a;N;$!ba;s/\n//g' testfile1  > output
+
+3. Strip out extra spaces
+	cat output | xargs -L1
+
+
+
+

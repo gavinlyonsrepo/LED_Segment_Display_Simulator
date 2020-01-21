@@ -35,7 +35,7 @@ class SegmentDisplay {
 	}
   }
 
-	// Returns the corresponding ASCII codes of the digits four choices.
+	// ASCII CODE SECTION Returns the corresponding ASCII codes of the digits four choices.
 	get SevenSegCodes() {
 		return [0x00, 0x86, 0x22, 0x7E, 0x6D, 0xD2, 0x46, 0x20, 0x29, 0x0B, 0x21, 0x70, 0x10, 0x40, 0x80, 0x52, 0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F, 0x09, 0x0D, 0x61, 0x48, 0x43, 0xD3, 0x5F, 0x77, 0x7C, 0x39, 0x5E, 0x79, 0x71, 0x3D, 0x76, 0x30, 0x1E, 0x75, 0x38, 0x15, 0x37, 0x3F, 0x73, 0x6B, 0x33, 0x6D, 0x78, 0x3E, 0x3E, 0x2A, 0x76, 0x6E, 0x5B, 0x39, 0x64, 0x0F, 0x23, 0x08, 0x02, 0x5F, 0x7C, 0x58, 0x5E, 0x7B, 0x71, 0x6F, 0x74, 0x10, 0x0C, 0x75, 0x30, 0x14, 0x54, 0x5C, 0x73, 0x67, 0x50, 0x6D, 0x78, 0x1C, 0x1C, 0x14, 0x76, 0x6E, 0x5B, 0x46, 0x30, 0x70, 0x01, 0x00];
 	  }
@@ -48,12 +48,13 @@ class SegmentDisplay {
 	get SixteenSegCodes() {
 		return [0x0000, 0x000C, 0x0204, 0xAA3C, 0xAABB, 0xEE99, 0x9371, 0x0200, 0x1400, 0x4100, 0xFF00, 0xAA00, 0x4000, 0x8800, 0x1000, 0x4400, 0x44FF, 0x040C, 0x8877, 0x083F, 0x888C, 0x90B3, 0x88FB, 0x000F, 0x88FF, 0x88BF, 0x2200, 0x4200, 0x9400, 0x8830, 0x4900, 0x2807, 0x0AF7, 0x88CF, 0x2A3F, 0x00F3, 0x223F, 0x80F3, 0x80C3, 0x08FB, 0x88CC, 0x2233, 0x007C, 0x94C0, 0x00F0, 0x05CC, 0x11CC, 0x00FF, 0x88C7, 0x10FF, 0x98C7, 0x88BB, 0x2203, 0x00FC, 0x44C0, 0x50CC, 0x5500, 0x88BC, 0x4433, 0x2212, 0x1100, 0x2221, 0x5000, 0x0030, 0x0100, 0xA070, 0xA0E0, 0x8060, 0x281C, 0xC060, 0xAA02, 0xA2A1, 0xA0C0, 0x2000, 0x2260, 0x3600, 0x00C0, 0xA848, 0xA040, 0xA060, 0x82C1, 0xA281, 0x8040, 0xA0A1, 0x80E0, 0x2060, 0x4040, 0x5048, 0x5500, 0x0A1C, 0xC020, 0xA212, 0x2200, 0x2A21, 0xCC00, 0x0000]
 	}
+	// END OF ASCII CODE SECTION
 	
   // Top left position of the display in the sketch
   set offsetVector(offsetVector) {
 	this._offsetVector = offsetVector;
   }
-  
+
   // Color of an inactive segment
   set offColor(color) {
 	this._offColor = color;
@@ -74,21 +75,54 @@ class SegmentDisplay {
 	this._segmentWidth = w;
   }
 
+
+/* Transformations sections. Used for generating display. drawing the segments*/
+
   // Right rotation and transformation. Used for generating display.
   rightTransform() {
 	translate(this._segmentWidth + this._segmentLength, this._segmentWidth);
 	rotate(PI / 2);
   }
-
- // Shift right transformation  used for half horionztal segments
-	shiftRightTransform(){
-		translate((this._segmentWidth + this._segmentLength+4)/2, 0);
-	}
   //Vertical transformation.Used for generating display.
 	topDownTransform() {
   	translate(this._segmentWidth * 2 + this._segmentLength, 0);
-  }
-
+	}
+	// Shift right transformation  used for half horizontal segments, Used for generating display.
+	shiftRightTransform(){
+		translate((this._segmentWidth + this._segmentLength+4)/2, 0);
+	}
+  //Used for flipping from diag to center half in 16 seg n to m t to u, Used for generating display.
+	shiftMidTransform(){
+		rotate(PI/2.6);
+		translate(-(this._segmentWidth/2), (this._segmentWidth*1.2));
+	}
+	 //Used for flipping , Used for generating display.
+	 //16 seg k to m and r to S,
+	 //14 seg J
+	diagTransform(){
+		rotate(PI*0.12); 
+		translate( -(this._segmentLength/16), this._segmentWidth*1.1); 
+	}
+	//used for flipping, 16 seg M to N S to T, 14 seg J , 
+	//Used for generating display.
+	diag2Transform(){
+			rotate(PI*0.12); 
+			translate((this._segmentLength/8), this._segmentWidth);
+		}
+	//left transformation. G turn from F, fullseg,  Used for generating display.
+	leftTransform(){
+		rotate(HALF_PI); 
+		translate(this._segmentWidth, this._segmentWidth);
+	}
+	
+	//half segment change back to full ,16 seg C to D and f to G , Used for generating display.
+	halfrightTransform(){
+		rotate(PI / 2); 
+		translate(this._segmentWidth, - (((this._segmentLength-this._segmentWidth)/2)+this._segmentWidth)); 
+	}
+	
+	/* End of Transformation section */
+	
   /* Returns the ordered transformations to apply for generating the display segments
    * SEVEN SEGMENT @returns {Array} - Array of callable functions */
   getTransformationsSeven() {
@@ -100,21 +134,16 @@ class SegmentDisplay {
 	  function() {_this.rightTransform()},  //D
 	  function() {_this.rightTransform()},  //E
 	  function() {_this.topDownTransform()}, //F
-	  function() {
-		rotate(HALF_PI); //G 90 degree turn 
-		translate(_this._segmentWidth, _this._segmentWidth);
-	  },
+	  function() {_this.leftTransform()}, //G
 	  function() {
 		  rotate(HALF_PI); //Decimal point 
 		  translate(_this._segmentLength*1.3, -(_this._segmentLength*1.6));
-		  //translate(0, 0);
 		  },
 	];
   }
 
    /* Returns the ordered transformations to apply for generating the display segments
-   * NINE SEGMENT , @returns {Array} - Array of callable functions 
-   */
+   * NINE SEGMENT , @returns {Array} - Array of callable functions */
   getTransformationsNine() {
 	let _this = this;
 	return [
@@ -123,10 +152,7 @@ class SegmentDisplay {
 	  function() {_this.rightTransform()}, //D
 	  function() {_this.rightTransform()},
 	  function() {_this.topDownTransform()}, //F
-	  function(){
-		rotate(HALF_PI); // G,  90 degrees
-		translate(_this._segmentWidth, _this._segmentWidth);
-		},
+	  function() {_this.leftTransform()}, //G
 	  function() {
 		rotate(PI * 1.75); // H , 315 degrees
 		translate(_this._segmentLength/2.75, -(_this._segmentLength/5)); 
@@ -142,8 +168,7 @@ class SegmentDisplay {
   }
   
   /* Returns the ordered transformations to apply for generating the display segments
-   * FOURTEEN Segment @returns {Array} - Array of callable functions
-   */
+   * FOURTEEN Segment @returns {Array} - Array of callable functions*/
   getTransformationsFourteen() {
 	let _this = this;
 	return [
@@ -152,34 +177,25 @@ class SegmentDisplay {
 	  function() {_this.rightTransform()}, //D
 	  function() {_this.rightTransform()}, //E
 	  function() {_this.topDownTransform()}, //F
-	  function() {
-		rotate(HALF_PI); // G1, 90 degrees
-		translate(_this._segmentWidth, _this._segmentWidth);
-		},
-	  function() {_this.shiftRightTransform();}, //G2
+	  function() {_this.leftTransform()}, //G1 
+	  function() {_this.shiftRightTransform()}, //G2
 	  function() {
 		rotate(PI*1.375); //  H , 78.7 degree
-		translate((_this._segmentLength/2.2), -(_this._segmentLength/5));
+		translate((_this._segmentLength/2.8), -(_this._segmentLength/5));
 		},
-	  function() {
-		rotate(PI*0.12); // J ,21.6 degree
-		translate( -(_this._segmentLength/7), _this._segmentWidth+1 );
-		},
-	  function(){
-		rotate(PI*0.12); // K , 21.6 degree
-		translate(_this._segmentWidth, _this._segmentLength/6);
-		},
-	  function() {
+		function() {_this.diagTransform()},// J ,21.6 degree
+		function() {_this.diag2Transform()},// K ,21.6 degree
+		function() {
 		 rotate(PI); // L , 180 degree 
-		 translate((_this._segmentLength/1.3333), _this._segmentLength/5.5);
+		 translate((_this._segmentLength/1.5), _this._segmentLength/3.5);
 		},
-	  function() {
+		function() {
 		 rotate(-(PI*0.12)); // M - 21.6 degree
-		 translate(-(_this._segmentLength/9.5), -(_this._segmentLength/4));
+		 translate(-(_this._segmentLength/10), -(_this._segmentLength/4));
 		},
-	  function() {
+		function() {
 		 rotate(-(PI*0.12)); // N 21.6 degree
-		 translate(_this._segmentWidth, -12);
+		 translate(_this._segmentWidth, -(_this._segmentLength/6));
 		},
 		function(){
 			translate(_this._segmentLength*1.25,-(_this._segmentLength/2.5));
@@ -187,54 +203,31 @@ class SegmentDisplay {
 	];
   }
  
-   /*
-   * Returns the ordered transformations to apply for generating the display segments
-   * SIXTEEN SEGMENT @returns {Array} - Array of 16 callable functions
-   */
+   /* Returns the ordered transformations to apply for generating the display segments
+   * SIXTEEN SEGMENT @returns {Array} - Array of 16 callable functions */
   getTransformationsSixteen() {
 	let _this = this;
 	return [
 		function() {_this.shiftRightTransform()}, // B
-		function() {
-			rotate(PI / 2); //C  , degrees90 
-			translate(_this._segmentWidth, - (((_this._segmentLength-_this._segmentWidth)/2)+_this._segmentWidth)); //C
-		},
+		function() {_this.halfrightTransform()}, //C
 		function() {_this.topDownTransform()}, //D
 		function() {_this.rightTransform()}, // E 
 		function() {_this.shiftRightTransform() }, // F
-		function() {
-			rotate(HALF_PI); //G
-			translate(_this._segmentWidth, - (((_this._segmentLength-_this._segmentWidth)/2)+_this._segmentWidth));
-			},
+		function() {_this.halfrightTransform()}, //G
 		function() {_this.topDownTransform()}, //H
 		function() {
 			rotate(-(PI*0.12))  //K
 			translate(-(_this._segmentLength/8), _this._segmentWidth*2.4);
 			}, 
-		function() {
-			rotate(PI*0.12); // M ,21.6 degree
-			translate( -(_this._segmentLength/16), _this._segmentWidth*1.1);  }, 
-		function() { 
-			rotate(PI*0.12); // N
-			translate((_this._segmentLength/8), _this._segmentWidth);
-			}, 
-		function() {
-			rotate(PI/2.6) //P
-			translate(-(_this._segmentWidth/2), (_this._segmentWidth*1.2));
-			}, 
+		function() {_this.diagTransform()},// M ,21.6 degree
+		function() {_this.diag2Transform()},// N ,21.6 degree
+		function() {_this.shiftMidTransform()}, //P 
 		function() { 
 			rotate(PI/2.6) //R
 			translate((_this._segmentWidth*1.5), -(_this._segmentWidth/12))},
-		function() {
-			rotate(PI*0.12); //S
-			translate( -(_this._segmentLength/16), _this._segmentWidth*1.1)
-				}, 
-		function() {rotate(PI*0.12); //T
-			translate((_this._segmentLength/8), _this._segmentWidth)
-			}, 
-		function() {rotate(PI/2.6) //U
-			translate(-(_this._segmentWidth/2), (_this._segmentWidth*1.2));
-			}, 
+		function() {_this.diagTransform()},// S ,21.6 degree
+        function() {_this.diag2Transform()},// T ,21.6 degree
+		function() {_this.shiftMidTransform()}, //U 21.6 degree
 		function() { // Dp
 			translate(-_this._segmentLength*1.2, -(_this._segmentLength*1.35));
 			rotate(PI/2);
@@ -256,9 +249,9 @@ class SegmentDisplay {
 		switch(this.segmentsType){
 			case '7': 
 				switch(segmentNumber){
-					case 7:  
+					case 7:   // Dec point
 						this.segments[segmentNumber].show(pointseg); 
-					break; // Dec point
+					break;
 					case 0: case 1: case 2: case 3: case 4: case 5: case 6:
 						this.segments[segmentNumber].show(fullseg); 
 					break;
@@ -267,9 +260,9 @@ class SegmentDisplay {
 			break;
 			case '9': 
 				switch(segmentNumber){
-					case 9:  
+					case 9:   // Dec point
 						this.segments[segmentNumber].show(pointseg); 
-					break; // Dec point
+					break;
 					case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8:
 						this.segments[segmentNumber].show(fullseg); 
 					break;

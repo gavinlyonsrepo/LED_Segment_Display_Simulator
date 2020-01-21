@@ -27,7 +27,7 @@ tested on Linux, Brave browser. Version 1.2.42 Chromium: (64-bit).
 Usage
 -------------------------------------------
 
-1. Open the "src" folder and run by clicking the "Index.html" file to run in a browser.
+1. Open the "src" folder and run by clicking the "Index.HTML" file to run in a browser.
 2. You will prompting for which segment display you want to use: 7, 9, 14 or 16. default is seven. 
 3. Next you will prompted which ASCII character you want to view, enter a ASCII character or simply press enter
 to start at start of ASCII table
@@ -35,6 +35,8 @@ to start at start of ASCII table
 Run thru the entire font automatically by clicking enable Auto check button.
 5. ASCII fonts are included in "Font" folder.
 6. LibreOffice Spreadsheets included which can be for creating fonts, characters and patterns  in "spreadsheets" folder.
+7. If you wish to change character or font displayed, replace the data held in the relevant array held in the 
+SegmentDisplay.js file in the section marked "ASCII CODE SECTION".
 
 Screenshots
 -------------------

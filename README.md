@@ -41,17 +41,11 @@ SegmentDisplay.js file in the section marked "ASCII CODE SECTION".
 Screenshots
 -------------------
 
-7 - Segment.
-![ 7 ](https://raw.githubusercontent.com/gavinlyonsrepo/LED_Segment_Display_Simulator/master/images/sevensegment.jpg)
+Segments.
 
-9 - Segment.
-![ 9 ](https://raw.githubusercontent.com/gavinlyonsrepo/LED_Segment_Display_Simulator/master/images/ninesegment.jpg)
+![ Segments ](https://raw.githubusercontent.com/gavinlyonsrepo/LED_Segment_Display_Simulator/master/images/segments.jpg)
 
-14 - Segment.
-![ 14 ](https://raw.githubusercontent.com/gavinlyonsrepo/LED_Segment_Display_Simulator/master/images/fourteensegment.jpg)
 
-16 - Segment
-![ 16 ](https://raw.githubusercontent.com/gavinlyonsrepo/LED_Segment_Display_Simulator/master/images/sixteensegment.jpg)
 
 
 See Also

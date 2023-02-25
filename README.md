@@ -12,11 +12,9 @@ Table of contents
 ---------------------------
 
   * [Overview](#overview)
-  * [Table of contents](#table-of-contents)
   * [Installation](#installation)
   * [Usage](#usage)
   * [Screenshots](#screenshots)
-  * [See Also](#see-also)
 
 Installation
 -----------------------------------------------
@@ -34,8 +32,7 @@ to start at start of ASCII table
 4. The chosen segment will now be displayed step thru it by press a key one by one or 
 Run thru the entire font automatically by clicking enable Auto check button.
 5. ASCII fonts are included in "Font" folder.
-6. LibreOffice Spreadsheets included which can be for creating fonts, characters and patterns  in "spreadsheets" folder.
-7. If you wish to change character or font displayed, replace the data held in the relevant array held in the 
+6. If you wish to change character or font displayed, replace the data held in the relevant array held in the 
 SegmentDisplay.js file in the section marked "ASCII CODE SECTION".
 
 Screenshots
@@ -43,14 +40,4 @@ Screenshots
 
 Segments.
 
-![ Segments ](https://raw.githubusercontent.com/gavinlyonsrepo/LED_Segment_Display_Simulator/master/images/segments.jpg)
-
-
-
-
-See Also
------------
-
-[LED segment Arduino library](https://github.com/gavinlyonsrepo/FourteenSegDisplay)
-
-
+![ Segments ](https://raw.githubusercontent.com/gavinlyonsrepo/LED_Segment_Display_Simulator/master/extra/images/segments.jpg)

@@ -3,7 +3,6 @@
 // Description:  file to hold class SegmentDisplay.
 // Language : P5 JavaScript 
 // Written : Gavin Lyons 
-
 const fullseg = 1;
 const halfseg = 2;
 const diagseg = 3;
@@ -12,14 +11,8 @@ const pointseg = 4;
 class SegmentDisplay {
   
   constructor(type) {
-	switch(type)
-	{
-		case '7': this._offsetVector = createVector(100, 60);break;
-		case '9': this._offsetVector = createVector(600, 60);break;
-		case '14': this._offsetVector = createVector(100, 360);break;
-		case '16': this._offsetVector = createVector(600, 360);break;
-	} 	
-	
+	// Default config
+	this._offsetVector = createVector(100, 60);
 	this._offColor = color(255, 0, 0, 40);
 	this._onColor = color(255, 0, 0);
 	this._segmentLength = 80;

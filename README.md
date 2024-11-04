@@ -21,19 +21,18 @@ Installation
 -----------------------------------------------
 
 Download the folder, It a JavaScript program its runs in a browser.
-tested on Linux, Brave browser. Version 1.2.42 Chromium: (64-bit).
+tested on Linux, Firefox.
 
 Usage
 -------------------------------------------
 
 1. Open the "src" folder and run by clicking the "Index.HTML" file to run in a browser.
-2. You will prompting for which segment display you want to use: 7, 9, 14 or 16. default is seven. 
-3. Next you will prompted which ASCII character you want to view, enter a ASCII character or simply press enter
+2. Next you will prompted which ASCII character you want to view, enter a ASCII character or simply press enter
 to start at start of ASCII table
-4. The chosen segment will now be displayed step thru it by press a key one by one or 
+3. The chosen segment will now be displayed step thru it by press a key one by one or 
 Run thru the entire font automatically by clicking enable Auto check button.
-5. ASCII fonts are included in "Font" folder.
-6. If you wish to change character or font displayed, replace the data held in the relevant array held in the 
+4. ASCII fonts are included in "Font" folder.
+5. If you wish to change character or font displayed, replace the data held in the relevant array held in the 
 SegmentDisplay.js file in the section marked "ASCII CODE SECTION".
 
 Screenshots
@@ -45,4 +44,4 @@ Segments.
 
 See Also
 ----------------------------------------
-[Video Demo](https://www.youtube.com/watch?v=9mMhEf-aYCc&list=PLzql2m0_lP05EFS7SsuyPyJJPhtUOGLjA)
+[Video Demo](https://www.youtube.com/watch?v=FTAbTbsUw-0)
